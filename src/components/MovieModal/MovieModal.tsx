@@ -3,14 +3,12 @@ import { createPortal } from "react-dom";
 import type { Movie } from "../../types/movie";
 import styles from "./MovieModal.module.css";
 
-interface Props {
+interface MovieModalProps {
   movie: Movie;
   onClose: () => void;
 }
 
-const modalRoot = document.getElementById("modal-root") ?? document.body;
-
-export const MovieModal = ({ movie, onClose }: Props) => {
+export const MovieModal = ({ movie, onClose }: MovieModalProps) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -63,6 +61,6 @@ export const MovieModal = ({ movie, onClose }: Props) => {
         </div>
       </div>
     </div>,
-    modalRoot
+    document.body
   );
 };
