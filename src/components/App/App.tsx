@@ -11,7 +11,6 @@ import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import styles from "./App.module.css";
 
-// Локальний інтерфейс MovieResponse згідно вимог
 interface MovieResponse {
   page: number;
   total_pages: number;
@@ -24,7 +23,6 @@ export default function App() {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [page, setPage] = useState(1);
 
-  // useQuery на самому початку (до useEffect)
   const { data, isLoading, isError, isSuccess, isFetching } = useQuery<
     MovieResponse,
     Error
@@ -35,7 +33,6 @@ export default function App() {
     placeholderData: () => undefined,
   });
 
-  // Повідомлення, якщо не знайдено фільмів
   useEffect(() => {
     if (isSuccess && data?.results.length === 0) {
       toast("No movies found for your request.");
@@ -60,7 +57,6 @@ export default function App() {
 
       {isSuccess && data.results.length > 0 && (
         <>
-          {/* ПАГІНАЦІЯ ВГОРІ */}
           {data.total_pages > 1 && (
             <ReactPaginate
               pageCount={data.total_pages}
@@ -80,7 +76,6 @@ export default function App() {
             onSelect={(movie) => setSelectedMovie(movie)}
           />
 
-          {/* ПАГІНАЦІЯ ВНИЗУ */}
           {data.total_pages > 1 && (
             <ReactPaginate
               pageCount={data.total_pages}
