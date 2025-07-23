@@ -8,7 +8,7 @@ import { Loader } from "../Loader/Loader";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import ReactPaginate from "react-paginate";
 import toast from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import styles from "./App.module.css";
 
 interface MovieResponse {
@@ -30,7 +30,7 @@ export default function App() {
     queryKey: ["movies", query, page],
     queryFn: () => fetchMovies(query, page),
     enabled: query.trim() !== "",
-    placeholderData: () => undefined,
+    placeholderData: keepPreviousData,
   });
 
   useEffect(() => {

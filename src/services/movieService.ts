@@ -10,7 +10,6 @@ const options = {
   },
 };
 
-// 🔽 Локально оголошуємо інтерфейс відповіді
 interface MovieResponse {
   page: number;
   total_pages: number;
